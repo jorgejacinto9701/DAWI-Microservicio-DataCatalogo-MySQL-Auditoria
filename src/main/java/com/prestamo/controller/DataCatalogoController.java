@@ -25,7 +25,7 @@ import com.prestamo.util.AppSettings;
 @RestController
 @RequestMapping("/url/dataCatalogo")
 @CrossOrigin(AppSettings.URL_CROSS_ORIGIN)
-public class DataCatalogoRegistroController {
+public class DataCatalogoController {
 
 	@Autowired
 	private DataCatalogoService dataCatalogoService;
