@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,13 +31,13 @@ public class DataCatalogoController {
 	@Autowired
 	private DataCatalogoService dataCatalogoService;
 
-	@GetMapping
-	public ResponseEntity<List<DataCatalogo>> lista(int idTipo) {
+	@GetMapping("/buscaPorId")
+	public ResponseEntity<List<DataCatalogo>> lista(@RequestParam int idTipo) {
 		List<DataCatalogo> lstSalida = dataCatalogoService.listaDataCatalogo(idTipo);
 		return ResponseEntity.ok(lstSalida);
 	}
 
-	@PostMapping
+	@PostMapping("/registra")
 	public ResponseEntity<?> registra(@RequestBody DataCatalogo objDataCatalogo) {
 		HashMap<String, Object> salida = new HashMap<>();
 		objDataCatalogo.setFechaRegistro(new Date());
