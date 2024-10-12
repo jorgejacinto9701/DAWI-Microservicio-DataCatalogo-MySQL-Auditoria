@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.prestamo.entity.DataCatalogo;
 import com.prestamo.service.DataCatalogoService;
@@ -31,8 +32,14 @@ public class DataCatalogoController {
 	@Autowired
 	private DataCatalogoService dataCatalogoService;
 
+	@Autowired
+	private RestTemplate restTemplate;
+	
 	@GetMapping("/buscaPorId")
 	public ResponseEntity<List<DataCatalogo>> lista(@RequestParam int idTipo) {
+
+		restTemplate.postForObject("http://localhost:8091/url/auditoria/registrar?tipoBaseDatos=MYSQL&baseDeDatos=Sistema_Biblioteca&tabla=dataCatalogo", null, String.class);
+
 		List<DataCatalogo> lstSalida = dataCatalogoService.listaDataCatalogo(idTipo);
 		return ResponseEntity.ok(lstSalida);
 	}
