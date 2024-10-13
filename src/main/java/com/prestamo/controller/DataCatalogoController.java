@@ -38,8 +38,8 @@ public class DataCatalogoController {
 	@GetMapping("/buscaPorId")
 	public ResponseEntity<List<DataCatalogo>> lista(@RequestParam int idTipo) {
 
-		restTemplate.postForObject("http://localhost:8091/url/auditoria/registrar?tipoBaseDatos=MYSQL&baseDeDatos=Sistema_Biblioteca&tabla=dataCatalogo", null, String.class);
-
+		restTemplate.postForObject("http://localhost:8091/url/auditoria/registra/MYSQL-sistemaPrestamo-DataCatalogo-buscaPorId", null, String.class);
+		
 		List<DataCatalogo> lstSalida = dataCatalogoService.listaDataCatalogo(idTipo);
 		return ResponseEntity.ok(lstSalida);
 	}
